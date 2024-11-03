@@ -8,9 +8,13 @@ Easily generate stunning visuals in just a few clicks. Whether for fun or for pr
 ✨ **Ready to create?**  
 Click the link below to explore the magic:
 
-🔗 [**Visit the Image Generator Bot**](https://muralibotz.github.io/Image-Gen)
+<div align="center">
+    <a href="https://MysticalDevs.github.io/Image-Gen" style="text-decoration: none;">
+        <img src="https://img.shields.io/badge/Visit%20the%20Image%20Generator%20Bot-%23FF69B4?style=for-the-badge&logoColor=white" alt="Visit the Image Generator Website"/>
+    </a>
+</div>
 
 ---
 
-🎨 _Crafted with imagination by **MURALIbotz** & **Team Hazex**_
+🎨 _Crafted with imagination by **MysticalDevs** & **Team Hazex**_
 
