@@ -74,31 +74,25 @@ generateBtn.addEventListener('click', async () => {
     const image = document.getElementById('generatedImage');
     if (!image || !image.src) throw new Error("Image not found.");
 
-    const img = new Image();
-    img.crossOrigin = 'anonymous'; // works??
-    img.src = image.src;
+    const res = await fetch('/download-image', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ imageUrl: image.src })
+    });
 
-    img.onload = () => {
-      const canvas = document.createElement('canvas');
-      canvas.width = img.width;
-      canvas.height = img.height;
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0);
-      const dataURL = canvas.toDataURL('image/png');
+    if (!res.ok) throw new Error("Server failed to process image.");
+    const blob = await res.blob();
+    const downloadUrl = URL.createObjectURL(blob);
 
-      const link = document.createElement('a');
-      link.href = dataURL;
-      link.download = 'chikuai-image.png';
-      link.click();
-    };
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = `Chiku-Ai-${Math.random().toString(36).substring(2, 8)}.png`;
+    link.click();
 
-    img.onerror = () => {
-      alert("Can't download this image due to security policy.");
-    };
-
+    URL.revokeObjectURL(downloadUrl);
   } catch (error) {
-    console.error("Download failed:", error.message);
-    alert("Download failed! Try after generating again.");
+    console.error("Error during download:", error);
+    alert("Download failed. Try again!");
   }
 });
 });
