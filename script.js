@@ -44,16 +44,16 @@ document.getElementById('downloadBtn').style.display = 'inline-block';
 
     
     try {
-      const API_URL = "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-3.5-large";
-      const HUGGINGFACE_API_KEY = "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";
+      const u = "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-3.5-large";
+      const x = "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";
 
       const headers = {
-        Authorization: `Bearer ${HUGGINGFACE_API_KEY}`,
+        Authorization: `Bearer ${x}`,
         Accept: 'application/json',
         'Content-Type': 'application/json'
       };
 
-      const response = await axios.post(API_URL, { inputs: prompt }, { headers, responseType: "arraybuffer" });
+      const response = await axios.post(u, { inputs: prompt }, { headers, responseType: "arraybuffer" });
 
       if (response.status === 200) {
         const base64 = btoa(
@@ -71,12 +71,25 @@ document.getElementById('downloadBtn').style.display = 'inline-block';
     }
     
     
-    document.getElementById('downloadBtn').addEventListener('click', () => {
-  const image = document.getElementById('generatedImage');
-  const link = document.createElement('a');
-  link.href = image.src;
-  link.download = "chikuai-image.png";
-  link.click();
+document.getElementById('downloadBtn').addEventListener('click', () => {
+  try {
+    const image = document.getElementById('generatedImage');
+    
+    if (!image || !image.src) {
+      throw new Error("Image not found or not loaded yet.");
+    }
+
+    const link = document.createElement('a');
+    link.href = image.src;
+    link.download = "chikuai-image.png";
+    document.body.appendChild(link); // Just to be safe on some browsers
+    link.click();
+    document.body.removeChild(link); // Clean up
+
+  } catch (error) {
+    console.error("Download failed:", error.message);
+    alert("Download failed! Please try again after generating an image.");
+  }
 });
 
   });
