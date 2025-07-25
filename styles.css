@@ -184,7 +184,7 @@ body {
   100% { opacity: 1; transform: rotate(20deg) scale(1.2); }
 }
 
-
+/*
 .download-btn {
   margin-top: 20px;
   padding: 12px 28px;
@@ -205,6 +205,7 @@ body {
   transform: translateY(-2px) scale(1.05);
   box-shadow: 0 12px 25px rgba(252, 182, 159, 0.6);
 }
+*/
 
 .info-btn {
   position: fixed;
