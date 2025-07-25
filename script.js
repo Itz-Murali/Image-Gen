@@ -11,7 +11,7 @@ function showPopup(message) {
   }, 3000);
 }
 
-// Pollinations API URL generator
+
 function getPollinationsImageUrl(prompt) {
   const base = "https://image.pollinations.ai/prompt/";
   const params = new URLSearchParams({
@@ -41,7 +41,7 @@ generateBtn.addEventListener('click', async () => {
     </div>
   `;
 
-  // Step 1: Try Pollinations AI
+  
   try {
     const pollinationsUrl = getPollinationsImageUrl(prompt);
     const pollinationsResponse = await fetch(pollinationsUrl);
@@ -58,7 +58,7 @@ generateBtn.addEventListener('click', async () => {
     console.warn("Pollinations failed:", err.message);
   }
 
-  // Step 2: Fallback to Ashlynn API
+
   try {
     const apiUrl = `https://death-image.ashlynn.workers.dev/?prompt=${encodeURIComponent(prompt)}&image=1&dimensions=square&safety=true`;
     const response = await fetch(apiUrl);
