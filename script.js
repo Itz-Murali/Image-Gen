@@ -69,25 +69,38 @@ generateBtn.addEventListener('click', async () => {
     imageContainer.innerHTML = "";
   }
 
-  document.getElementById('downloadBtn').addEventListener('click', () => {
-    try {
-      const image = document.getElementById('generatedImage');
+  document.getElementById('downloadBtn').addEventListener('click', async () => {
+  try {
+    const image = document.getElementById('generatedImage');
+    if (!image || !image.src) throw new Error("Image not found.");
 
-      if (!image || !image.src) {
-        throw new Error("Image not found or not loaded yet.");
-      }
+    const img = new Image();
+    img.crossOrigin = 'anonymous'; // works??
+    img.src = image.src;
+
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      const dataURL = canvas.toDataURL('image/png');
 
       const link = document.createElement('a');
-      link.href = image.src;
-      link.download = "chikuai-image.png";
-      document.body.appendChild(link);
+      link.href = dataURL;
+      link.download = 'chikuai-image.png';
       link.click();
-      document.body.removeChild(link);
-    } catch (error) {
-      console.error("Download failed:", error.message);
-      alert("Download failed! Please try again after generating an image.");
-    }
-  });
+    };
+
+    img.onerror = () => {
+      alert("Can't download this image due to security policy.");
+    };
+
+  } catch (error) {
+    console.error("Download failed:", error.message);
+    alert("Download failed! Try after generating again.");
+  }
+});
 });
 
 
