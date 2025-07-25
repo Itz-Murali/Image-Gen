@@ -7,7 +7,7 @@
 <p align="center">
   <b>Enter Prompt, Get Art. Simple, Fast, Beautiful.</b><br>
   <br>
-  <a href="https://chikuai.vercel.app" target="_blank">
+  <a href="https://chiku-ai.vercel.app" target="_blank">
     <img src="https://img.shields.io/badge/Visit-ChikuAi-blueviolet?style=for-the-badge&logo=vercel&logoColor=white" />
   </a>
 </p>
@@ -24,11 +24,11 @@
 
 ### 🧠 Features
 
-- Clean Ui With Blur Glass Effects
-- Instant Image Generation Using Pollinations AI
-- Auto Fallback To Backup Api If Needed
-- Mobile Friendly & Fully Responsive
-- 100% Free To Use
+- Clean Ui With Beautiful Colors 🎉
+- Instant Image Generation Using Pollinations AI 💙
+- Auto Fallback To Backup Api If Needed ❄️
+- Mobile Friendly & Fully Responsive 📱
+- 100% Free To Use ✅
 
 ---
 
@@ -44,7 +44,7 @@
 
 | Role       | Name          |
 |------------|---------------|
-| 👩‍💻 Developer | Murali 💻 |
+| 👩‍💻 Developer | [Murali 💻](https://Murali.vercel.app) |
 | 🚀 Hosting   | Vercel       |
 | 🎨 Tool      | Pollinations AI |
 
