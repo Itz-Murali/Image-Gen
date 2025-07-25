@@ -58,22 +58,21 @@ generateBtn.addEventListener('click', async () => {
     console.warn("Pollinations failed:", err.message);
   }
 
-
+  
   try {
-    const apiUrl = `https://death-image.ashlynn.workers.dev/?prompt=${encodeURIComponent(prompt)}&image=1&dimensions=square&safety=true`;
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-
-    if (data.images && data.images.length > 0) {
-      imageContainer.innerHTML = `<img src="${data.images[0]}" alt="Generated Image" />`;
-    } else {
-      throw new Error("Backup API failed to return image.");
+    const duckUrl = `https://imgen.duck.mom/prompt/${encodeURIComponent(prompt)}`;
+    const response = await fetch(duckUrl);
+    
+    if (!response.ok) {
+      throw new Error("DuckMom API failed.");
     }
+
+    const blob = await response.blob();
+    const imageUrl = URL.createObjectURL(blob);
+    imageContainer.innerHTML = `<img src="${imageUrl}" alt="Generated Image" />`;
   } catch (err) {
-    console.warn("Backup API failed:", err.message);
+    console.warn("DuckMom API failed:", err.message);
     imageContainer.innerHTML = "";
     showPopup("Oops! Image generation failed.");
   }
 });
-
-
